@@ -1,14 +1,18 @@
 package com.jj.jirademo.common.model
 
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.Id
+import javax.persistence.*
 import org.hibernate.annotations.GenericGenerator
 import java.util.*
 
+@Entity
 data class Activity(
         @Id
         @GeneratedValue(generator = "uuid")
         @GenericGenerator(name = "uuid", strategy = "org.hibernate.id.UUIDGenerator")
-        val id : UUID? = null,
+        val id : String?,
         val activityName: String
-)
+) {
+        constructor() : this("","") {
+
+        }
+}
