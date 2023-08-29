@@ -44,4 +44,33 @@ data class Task(
 
         }
 
+        override fun equals(other: Any?): Boolean {
+                if (this === other) return true
+                if (javaClass != other?.javaClass) return false
+
+                other as Task
+
+                if (id != other.id) return false
+                if (description != other.description) return false
+                if (taskName != other.taskName) return false
+                if (dueDate != other.dueDate) return false
+                if (createdAt != other.createdAt) return false
+                if (updatedAt != other.updatedAt) return false
+                if (priority != other.priority) return false
+                if (status != other.status) return false
+                if (user != other.user) return false
+                return comment == other.comment
+        }
+
+        override fun hashCode(): Int {
+                var result = id?.hashCode() ?: 0
+                result = 31 * result + description.hashCode()
+                result = 31 * result + taskName.hashCode()
+                result = 31 * result + dueDate.hashCode()
+                result = 31 * result + createdAt.hashCode()
+                result = 31 * result + updatedAt.hashCode()
+                return result
+        }
+
+
 }
