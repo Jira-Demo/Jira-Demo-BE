@@ -17,9 +17,7 @@ data class Role(
         val user: Set<User>?
 
 ) {
-        constructor() : this("","", hashSetOf()) {
 
-        }
 
         override fun equals(other: Any?): Boolean {
                 if (this === other) return true

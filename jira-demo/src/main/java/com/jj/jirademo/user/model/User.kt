@@ -34,9 +34,7 @@ data class User(
         @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
         val comment: Set<Comment>?
 ) {
-        constructor() : this("","","","","", Project(), Task(),Role(), hashSetOf()) {
 
-        }
 
         override fun equals(other: Any?): Boolean {
                 if (this === other) return true

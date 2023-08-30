@@ -17,8 +17,7 @@ data class Project(
         @OneToMany(mappedBy = "project", fetch = FetchType.EAGER)
         val users: Set<User>?
 ) {
-        constructor() : this("","", hashSetOf()) {
-        }
+
 
         override fun equals(other: Any?): Boolean {
                 if (this === other) return true
