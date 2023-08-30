@@ -23,9 +23,7 @@ data class Comment(
         @JoinColumn(name="task_id", nullable = false)
         val task: Task,
 ) {
-        constructor() : this("","",User(),Task()) {
 
-        }
 
         override fun equals(other: Any?): Boolean {
                 if (this === other) return true

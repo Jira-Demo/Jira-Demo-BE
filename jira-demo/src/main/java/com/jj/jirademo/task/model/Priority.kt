@@ -17,9 +17,7 @@ data class Priority(
         @OneToMany(mappedBy = "priority", fetch = FetchType.LAZY)
         val task: Set<Task>?
 ) {
-        constructor() : this("","", hashSetOf()) {
 
-        }
 
         override fun equals(other: Any?): Boolean {
                 if (this === other) return true
