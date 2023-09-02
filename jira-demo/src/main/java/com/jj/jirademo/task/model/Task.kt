@@ -32,14 +32,19 @@ data class Task(
         @JoinColumn(name="status_id", nullable = false)
         val status : Status,
 
-        @OneToMany(mappedBy = "task", fetch = FetchType.LAZY)
-        val user: Set<User>?,
+        @ManyToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
+        @JoinColumn(name="assigned_user_id", nullable = false)
+        val assignedUser: User,
+
+        @ManyToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
+        @JoinColumn(name="reported_user_id", nullable = false)
+        val reportedUser: User,
+
 
         @OneToMany(mappedBy = "task", fetch = FetchType.LAZY)
         val comment: Set<Comment>?
 
 ): BaseEntity() {
-
 
         override fun equals(other: Any?): Boolean {
                 if (this === other) return true
@@ -55,7 +60,8 @@ data class Task(
                 if (updatedDate != other.updatedDate) return false
                 if (priority != other.priority) return false
                 if (status != other.status) return false
-                if (user != other.user) return false
+                if (assignedUser != other.assignedUser) return false
+                if (reportedUser != other.reportedUser) return false
                 return comment == other.comment
         }
 

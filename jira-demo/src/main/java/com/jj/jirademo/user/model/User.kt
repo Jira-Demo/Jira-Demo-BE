@@ -24,15 +24,17 @@ data class User(
         @JoinColumn(name="project_id", nullable = false)
         val project: Project,
 
-        @ManyToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
-        @JoinColumn(name="task_id", nullable = false)
-        val task: Task,
-
-
-
 
         @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-        val comment: Set<Comment>?
+        val comment: Set<Comment>?,
+
+        @OneToMany(mappedBy = "assignedUser", fetch = FetchType.LAZY)
+        val taskAssigned: Set<Task>?,
+
+        @OneToMany(mappedBy = "reportedUser", fetch = FetchType.LAZY)
+        val taskReported: Set<Task>?
+
+
 ) {
 
 
@@ -47,10 +49,11 @@ data class User(
                 if (surname != other.surname) return false
                 if (password != other.password) return false
                 if (email != other.email) return false
-                if (project != other.project) return false
-                if (task != other.task) return false
                 if (role != other.role) return false
-                return comment == other.comment
+                if (project != other.project) return false
+                if (comment != other.comment) return false
+                if (taskAssigned != other.taskAssigned) return false
+                return taskReported == other.taskReported
         }
 
         override fun hashCode(): Int {
@@ -61,6 +64,4 @@ data class User(
                 result = 31 * result + email.hashCode()
                 return result
         }
-
-
 }
