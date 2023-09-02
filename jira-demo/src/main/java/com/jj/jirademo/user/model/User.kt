@@ -18,6 +18,7 @@ data class User(
         val surname: String,
         val password: String,
         val email: String,
+        val role: Role,
 
         @ManyToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
         @JoinColumn(name="project_id", nullable = false)
@@ -27,9 +28,8 @@ data class User(
         @JoinColumn(name="task_id", nullable = false)
         val task: Task,
 
-        @ManyToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
-        @JoinColumn(name="role_id", nullable = false)
-        val role: Role,
+
+
 
         @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
         val comment: Set<Comment>?
