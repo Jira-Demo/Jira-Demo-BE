@@ -9,10 +9,8 @@ data class TaskDto(
         val description: String?,
         val taskName: String,
         val dueDate : Date?,
-        val createdDate: LocalDateTime?,
-        val updatedDate: LocalDateTime?,
         val priorityId : String,
-        val statusId : String,
+        val statusId : String
 ) {
 
 }

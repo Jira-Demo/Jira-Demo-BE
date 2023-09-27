@@ -5,11 +5,10 @@ import com.jj.jirademo.user.dto.CreateProjectRequest;
 import com.jj.jirademo.user.dto.ProjectDto;
 import com.jj.jirademo.user.dto.converter.ProjectDtoConverter;
 import com.jj.jirademo.user.repository.ProjectRepository;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import java.awt.print.Pageable;
+
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;

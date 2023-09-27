@@ -8,7 +8,7 @@ data class UserDto(
         val surname: String,
         val password: String,
         val email: String,
-        val project: ProjectDto,
-        val task: TaskDto,
+        val project: UserProjectDto,
+        val taskAssigned: Set<TaskDto>,
         val roleId: String,
 )

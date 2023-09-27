@@ -1,10 +1,6 @@
 package com.jj.jirademo.user.dto
 
-
-import java.time.LocalDateTime
-
-data class ProjectDto(
+data class UserProjectDto(
         val id : String?,
         val projectName: String
-
 )
