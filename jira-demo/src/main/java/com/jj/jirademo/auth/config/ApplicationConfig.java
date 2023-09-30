@@ -29,13 +29,10 @@ public class ApplicationConfig {
     @Bean
     public UserDetailsService userDetailsService(){
 
-        return new UserDetailsService() {
-            @Override
-            public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-                User user=userRepository.findByEmail(s).orElseThrow(()-> new UsernameNotFoundException("Username not found"));
-                return new CustomUserDetail(user) {
-                };
-            }
+        return s -> {
+            User user=userRepository.findByEmail(s).orElseThrow(()-> new UsernameNotFoundException("Username not found"));
+            return new CustomUserDetail(user) {
+            };
         };
 
     }

@@ -2,6 +2,7 @@ package com.jj.jirademo.auth.service;
 
 import com.jj.jirademo.user.dto.UserDto;
 import com.jj.jirademo.user.dto.UserRequest;
+import com.jj.jirademo.user.dto.UserResponse;
 import com.jj.jirademo.user.dto.converter.UserDtoConverter;
 import com.jj.jirademo.user.model.User;
 import com.jj.jirademo.user.repository.UserRepository;
@@ -23,10 +24,13 @@ public class AuthenticationService {
         this.userDtoConverter = userDtoConverter;
     }
 
-    public UserDto auth(UserRequest userRequest){
+    public UserResponse auth(UserRequest userRequest){
+        String deneme = userRequest.getEmail();
+        System.out.println(deneme);
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userRequest.getEmail(),userRequest.getPassword()));
         User user =userRepository.findByEmail(userRequest.getEmail()).orElseThrow();
-        return userDtoConverter.convert(user);
+        String token = jwtService.generateToken(user);
+        return new UserResponse(token);
 
     }
 }
