@@ -3,7 +3,9 @@ package com.jj.jirademo.auth.controller;
 import com.jj.jirademo.auth.service.AuthenticationService;
 import com.jj.jirademo.user.dto.UserDto;
 import com.jj.jirademo.user.dto.UserRequest;
+import com.jj.jirademo.user.dto.UserResponse;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,7 +19,8 @@ public class AuthenticationController {
         this.authenticationService = authenticationService;
     }
 
-    public ResponseEntity<UserDto> auth(@RequestBody UserRequest userRequest){
-        return null;
+    @PostMapping("/auth")
+    public ResponseEntity<UserResponse> auth(@RequestBody UserRequest userRequest){
+        return ResponseEntity.ok(authenticationService.auth(userRequest));
     }
 }

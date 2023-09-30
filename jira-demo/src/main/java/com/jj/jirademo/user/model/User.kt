@@ -18,6 +18,8 @@ data class User(
         val surname: String,
         val password: String,
         val email: String,
+        @Enumerated(EnumType.STRING)
+        @Column(name="role")
         val role: Role,
 
         @ManyToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
