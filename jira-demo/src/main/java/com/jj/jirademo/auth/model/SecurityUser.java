@@ -1,6 +1,5 @@
-package com.jj.jirademo.auth;
+package com.jj.jirademo.auth.model;
 
-import com.jj.jirademo.common.model.Role;
 import com.jj.jirademo.user.model.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -9,30 +8,26 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
 
-public class CustomUserDetail implements UserDetails {
-    private String username;
-    private String password;
-    private Role role;
+public class SecurityUser implements UserDetails {
+    private final User user;
 
-    public CustomUserDetail(User user) {
-        this.username = user.getEmail();
-        this.password = user.getPassword();
-        this.role = user.getRole();
+    public SecurityUser(User user) {
+        this.user = user;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(role.name()));
+        return List.of(new SimpleGrantedAuthority(user.getRole().name()));
     }
 
     @Override
     public String getPassword() {
-        return password;
+        return user.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return username;
+        return user.getEmail();
     }
 
     @Override

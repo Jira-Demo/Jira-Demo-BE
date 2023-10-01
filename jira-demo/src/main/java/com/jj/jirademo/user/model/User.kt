@@ -5,6 +5,9 @@ import com.jj.jirademo.common.model.Project
 import com.jj.jirademo.common.model.Role
 import com.jj.jirademo.task.model.Task
 import org.hibernate.annotations.GenericGenerator
+import org.springframework.security.core.GrantedAuthority
+import org.springframework.security.core.authority.SimpleGrantedAuthority
+import org.springframework.security.core.userdetails.UserDetails
 import javax.persistence.*
 
 @Entity
@@ -66,4 +69,7 @@ data class User(
                 result = 31 * result + email.hashCode()
                 return result
         }
-}
+
+
+
+        }
